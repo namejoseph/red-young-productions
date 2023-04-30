@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Red Young Productions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Lora&family=Roboto&family=Lato" />
+  <script src="https://kit.fontawesome.com/cc06bfdf96.js" crossorigin="anonymous"></script>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* maintains container size even with padding */
+    html {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #333;
+    }
+
+    body {
+      background-color: #333;
+      color: #fff;
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      height: 22%;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      background-color: #333;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2vh;
+      text-align: center;
+    }
+
+    .main-font {
+      font-family: 'Lora', sans-serif;
+      font-size: 4vh;
+      display: inline;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 700;
+      color: #b78176;
+    }
+
+    .full-logo {
+      height: 33%;
+    }
+
+    .hamburger-button:hover {
+      cursor: pointer;
+    }
+
+    .panel-photo {
+      background-color: white;
+      background-image: url('https://redyoung.com/wp-content/uploads/2023/03/redyoung-main-photo.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: top;
+      height: 55%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .panel-separator {
+      background: rgb(26, 26, 26);
+      background: linear-gradient(90deg, rgba(26, 26, 26, 1) 0%, rgba(46, 46, 46, 1) 50%, rgba(26, 26, 26, 1) 100%);
+      height: 2%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .panel-footer {
+      background-color: #333333;
+      height: 16%;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
+      padding: 2%;
+    }
+
+    .panel-footer-left {
+      height: 100%;
+    }
+
+    .red-icon {
+      height: 100%;
+    }
+
+    .panel-footer-right {
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .panel-footer-right-col1 {
+      display: flex;
+      align-items: left;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .panel-footer-right-col2 {
+      text-align: right;
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      gap: 2vh;
+    }
+
+    .hamburger-button {
+      display: none;
+    }
+
+    .bar1,
+    .bar2,
+    .bar3 {
+      width: 4vh;
+      height: 0.4vh;
+      background-color: white;
+      margin: 0.7vh 0;
+      transition: 0.4s;
+    }
+
+    .change .bar1 {
+      transform: translate(0, 1.1vh) rotate(-45deg);
+    }
+
+    .change .bar2 {
+      opacity: 0;
+    }
+
+    .change .bar3 {
+      transform: translate(0, -1.1vh) rotate(45deg);
+    }
+
+    .email-link {
+      font-family: 'Lato', sans-serif;
+      color: #b78176;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-size: 4vh;
+    }
+
+    .email-link:hover {
+      text-decoration: underline;
+    }
+
+    .basic-text {
+      font-family: 'Roboto', sans-serif;
+      font-size: 2vh;
+    }
+
+    .social-icons {
+      color: #666666;
+      font-size: 4vh;
+    }
+
+    .social-icons:hover {
+      color: #aaaaaa;
+    }
+
+    .panel-mobile-menu {
+      position: absolute;
+      top: 100vh;
+      opacity: 0;
+      background-color: #444;
+      height: 83%;
+      width: 100%;
+      padding: 2vh;
+      transition: 0.8s;
+      overflow: hidden;
+    }
+
+    .panel-nav {
+      background: rgb(26, 26, 26);
+      background: linear-gradient(90deg, rgba(26, 26, 26, 1) 0%, rgba(46, 46, 46, 1) 50%, rgba(26, 26, 26, 1) 100%);
+      height: 5%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+      font-style: normal;
+      font-variant: normal;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .desktop-nav {
+      overflow: hidden;
+    }
+
+    .panel-nav a {
+      float: left;
+      font-size: 80%;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .dropdown {
+      float: left;
+      overflow: hidden;
+    }
+
+    .dropdown .dropbtn {
+      font-size: 80%;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 14px 16px 1.2vh 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      font-style: normal;
+      font-variant: normal;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .panel-nav a:hover,
+    .dropdown:hover .dropbtn {
+      background-color: black;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      float: none;
+      color: black;
+      padding: 14px 16px 2vh 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .mobile-menu-option {
+      font-size: 120%;
+      padding: 1.5%;
+      color: white;
+    }
+
+    .mobile-menu-option:hover {
+      background-color: #333;
+      cursor: pointer;
+    }
+
+    .mobile-menu-option-drop {
+      font-size: 120%;
+      padding: 2% 2% 2% 6%;
+      color: white;
+    }
+
+    .mobile-menu-option-drop:hover {
+      background-color: #333;
+    }
+
+    .drop {
+      display: none;
+    }
+
+    @media screen and (max-width: 760px) {
+      .desktop-nav {
+        display: none;
+      }
+
+      .hamburger-button {
+        display: inline;
+      }
+
+      .main-font {
+        font-size: 2.5vh;
+      }
+
+      .email-link {
+        font-size: 3.5vh;
+      }
+    }
+
+    @media screen and (max-width: 450px) {
+
+      .main-font {
+        font-size: 2.5vh;
+      }
+
+      .email-link {
+        font-size: 95%;
+      }
+    }
+
+    @media screen and (max-width: 300px) {
+
+      .main-font {
+        font-size: 2.5vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="panel-header" id="panel-header">
+    <span class="main-font">Welcome to Red Young Productions</span>
+    <img src="https://redyoung.com/wp-content/uploads/2023/03/redyoung-newlogo-ryp.png" class="full-logo">
+  </div>
+
+  <div class="panel-nav" id="panel-nav">
+
+    <!-- desktop menu -->
+    <div class="desktop-nav">
+      <a href="https://redyoung.com">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">About
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="coming-soon.html">Bio</a>
+          <a href="coming-soon.html">History</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Shows
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="coming-soon.html"">Upcoming</a>
+          <a href="coming-soon.html">Touring History</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Audio
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="coming-soon.html">Red Young Albums</a>
+          <a href="coming-soon.html">Complete Discography</a>
+          <a href="coming-soon.html">Personal Recordings (Improvisations and New Works)</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Video
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="coming-soon.html">Personal Performances</a>
+          <a href="coming-soon.html">Artists I've Performed With</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Music
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="coming-soon.html">Original Songs</a>
+          <a href="coming-soon.html">Books</a>
+          <a href="coming-soon.html">Vocal and Instrumental Arrangements</a>
+        </div>
+      </div>
+      <a href="coming-soon.html">Contact</a>
+    </div>
+
+    <!-- hamburger button -->
+    <div class="hamburger-button" id="hamburger-button" onclick="myFunction(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+
+  </div>
+
+  <!-- mobile menu -->
+  <div class="panel-mobile-menu" id="mobile-menu">
+    <span class="basic-text">
+      <a href="https://redyoung.com">
+        <div class="mobile-menu-option">HOME</div>
+      </a>
+      <div class="mobile-menu-option" onclick="toggleMobileOption('.drop-about')">ABOUT <i class="fa fa-caret-down"></i>
+      </div>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option-drop drop-about drop">- Bio</div>
+      </a>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option-drop drop-about drop">- History</div>
+      </a>
+      <div class="mobile-menu-option" onclick="toggleMobileOption('.drop-shows')">SHOWS <i class="fa fa-caret-down"></i>
+      </div>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option-drop drop-shows drop">- Upcoming</div>
+      </a>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option-drop drop-shows drop">- Touring History</div>
+      </a>
+      <div class="mobile-menu-option" onclick="toggleMobileOption('.drop-audio')">AUDIO <i class="fa fa-caret-down"></i>
+      </div>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option-drop drop-audio drop">- Red Young Albums</div>
+      </a>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option-drop drop-audio drop">- Complete Discography</div>
+      </a>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option-drop drop-audio drop">- Personal Recordings (Improvisations and New Works)</div>
+      </a>
+      <div class="mobile-menu-option" onclick="toggleMobileOption('.drop-video')">VIDEO <i class="fa fa-caret-down"></i>
+      </div>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option-drop drop-video drop">- Personal Performances</div>
+      </a>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option-drop drop-video drop">- Artists I've Performed With</div>
+      </a>
+      <div class="mobile-menu-option" onclick="toggleMobileOption('.drop-music')">MUSIC <i class="fa fa-caret-down"></i>
+      </div>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option-drop drop-music drop">- Original Songs</div>
+      </a>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option-drop drop-music drop">- Books</div>
+      </a>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option-drop drop-music drop">- Vocal and Instrumental Arrangements</div>
+      </a>
+      <a href="coming-soon.html">
+        <div class="mobile-menu-option">CONTACT</div>
+      </a>
+
+    </span>
+  </div>
+
+  <div class="panel-photo">
+  </div>
+
+  <div class="panel-separator">
+  </div>
+
+  <div class="panel-footer">
+    <div class="panel-footer-left"><img src="https://redyoung.com/wp-content/uploads/2023/03/redyoung-icon-ryp.png"
+        class="red-icon">
+    </div>
+    <div class="panel-footer-sep" style="width: 10px; min-width: 5px;"></div>
+    <div class="panel-footer-right">
+      <div class="panel-footer-right-col1">
+        <span class="basic-text">CONTACT: </span><a href="mailto:red@redyoung.com"
+          class="email-link">red@redyoung.com</a>
+      </div>
+      <div class="panel-footer-right-col2">
+        <a href="https://www.facebook.com/RedYoungOffical/" target="_blank"><i
+            class="fa-brands fa-square-facebook social-icons"></i></a>
+        <a href="https://www.youtube.com/@redyoungone" target="_blank"><i
+            class="fa-brands fa-youtube social-icons"></i></a>
+        <a href="https://www.instagram.com/red_youngb3/" target="_blank"><i
+            class="fa-brands fa-instagram social-icons"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    let mobileMenuOpen = 0;
+    const scrollPosition = window.scrollY;
+    let menuOpen = 'closed';
+
+    window.addEventListener('resize', function (event) {
+      if (window.innerWidth > 760) {
+        document.getElementById("mobile-menu").style.top = "100%";
+        document.getElementById("mobile-menu").style.opacity = "0%";
+        document.getElementById("panel-nav").style.overflow = "hidden";
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.backgroundColor = "#333";
+        mobileMenuOpen = 0;
+
+        document.getElementById("hamburger-button").classList.remove("change");
+      }
+    });
+
+    function myFunction(x) {
+      x.classList.toggle("change");
+
+      if (mobileMenuOpen == 0) {
+        document.getElementById("mobile-menu").style.top = "27%";
+        document.getElementById("mobile-menu").style.opacity = "100%";
+        document.getElementById("panel-nav").style.overflow = "visible";
+        document.documentElement.style.backgroundColor = "#444";
+        mobileMenuOpen = 1;
+      } else {
+        document.getElementById("mobile-menu").style.top = "100%";
+        document.getElementById("mobile-menu").style.opacity = "0%";
+        document.getElementById("panel-nav").style.overflow = "hidden";
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.backgroundColor = "#333";
+        mobileMenuOpen = 0;
+        window.scroll({
+          top: scrollPosition,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    function toggleMobileOption(theClass) {
+  document.querySelectorAll('.drop').forEach(function (element) {
+    element.style.display = "none";
+  });
+
+  if (menuOpen != theClass) {
+    document.querySelectorAll(theClass).forEach(function (element) {
+      element.style.display = "block";
+      menuOpen = theClass;
+    });
+  } else {
+    document.querySelectorAll(theClass).forEach(function (element) {
+      element.style.display = "none";
+      menuOpen = 'closed';
+    });
+  }
+}
+
+
+  </script>
+
+  <!-- PHP code goes here -->
+</body>
